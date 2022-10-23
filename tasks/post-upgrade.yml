@@ -19,11 +19,11 @@
   when: reboot_required.rc == 0
 
 - name: "Debug"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ reboot_required }}"
 
 - name: "Debug"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ service_restart }}"
   when: reboot_required.rc == 0
 
