@@ -1,0 +1,37 @@
+---
+- name: "Include os specific variables for Debian hosts"
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  when: ansible_os_family == 'Debian'
+
+- name: "Include os specific variables for RedHat hosts"
+  ansible.builtin.include_vars: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+  when: ansible_os_family == 'RedHat'
+
+- name: "Check if reboot is required"
+  ansible.builtin.command: "{{ needrestart_restart_cmd }}"
+  register: reboot_required
+  changed_when: false
+
+- name: "Check if service restart is required"
+  ansible.builtin.command: "{{ needrestart_restart_cmd }}"
+  register: service_restart
+  changed_when: false
+  when: reboot_required.rc == 0
+
+- name: "Restart services that need to be restarted"
+  ansible.builtin.service:
+    name: "{{ system_update_item }}"
+    state: "restarted"
+  loop: "{{ service_restart.stdout_lines }}"
+  loop_control:
+    loop_var: system_update_item
+  when: reboot_required.rc == 0 and service_restart.rc != 0
+
+- name: "Reboot upgraded host"
+  ansible.builtin.reboot:
+    msg: "Reboot triggered by ansible automatic system upgrade"
+    pre_reboot_delay: "{{ system_upgrade_pre_reboot_delay | default(omit) }}"
+    post_reboot_delay: "{{ system_upgrade_post_reboot_delay | default(omit) }}"
+    reboot_timeout: "{{ system_upgrade_reboot_timeout | default(omit) }}"
+    test_command: "{{ system_upgrade_test_command | default(omit) }}"
+  when: reboot_required.rc != 0

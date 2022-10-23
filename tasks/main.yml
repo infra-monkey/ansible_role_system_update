@@ -1,1 +1,6 @@
 ---
+- name: "Include tasks for host family {{ ansible_os_family }}"
+  ansible.builtin.include_tasks: upgrade-{{ ansible_os_family }}.yml
+
+- name: "Include tasks for post update actions"
+  ansible.builtin.include_tasks: post-upgrade.yml

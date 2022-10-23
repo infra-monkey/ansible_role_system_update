@@ -10,4 +10,4 @@ jobs:
   call-workflow-molecule:
     uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@main
     with:
-      role-name: 'role_name'
+      role-name: 'system_update'
