@@ -19,8 +19,3 @@
     update_cache: true
     autoremove: true
     state: latest
-  register: packages
-
-- name: "Debug"
-  ansible.builtin.debug:
-    msg: "{{ packages }}"
