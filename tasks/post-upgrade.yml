@@ -10,12 +10,12 @@
 - name: "Check if reboot is required"
   ansible.builtin.command: "{{ needrestart_restart_cmd }}"
   register: reboot_required
-  changed_when: false
+  changed_when: reboot_required.rc != 0
 
 - name: "Check if service restart is required"
   ansible.builtin.command: "{{ needrestart_restart_cmd }}"
   register: service_restart
-  changed_when: false
+  changed_when: service_restart.rc != 0
   when: reboot_required.rc == 0
 
 - name: "Restart services that need to be restarted"
