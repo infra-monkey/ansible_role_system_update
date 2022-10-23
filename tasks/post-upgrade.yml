@@ -25,7 +25,7 @@
   loop: "{{ service_restart.stdout_lines }}"
   loop_control:
     loop_var: system_update_item
-  when: reboot_required.rc == 0
+  when: reboot_required.rc == 0 and service_restart.rc != 0
 
 - name: "Reboot upgraded host"
   ansible.builtin.reboot:
