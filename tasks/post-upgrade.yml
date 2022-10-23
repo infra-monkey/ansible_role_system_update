@@ -16,7 +16,7 @@
   ansible.builtin.command: "{{ needrestart_restart_cmd }}"
   register: service_restart
   changed_when: false
-  when: reboot_required.rc != 0
+  when: reboot_required.rc == 0
 
 - name: "Restart services that need to be restarted"
   ansible.builtin.service:
@@ -25,7 +25,7 @@
   loop: "{{ service_restart.stdout_lines }}"
   loop_control:
     loop_var: system_update_item
-  when: reboot_required.rc != 0
+  when: reboot_required.rc == 0
 
 - name: "Reboot upgraded host"
   ansible.builtin.reboot:
