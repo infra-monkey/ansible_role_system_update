@@ -1,4 +1,5 @@
 ---
 dependency_list:
   - "needrestart"
-needrestart_cmd: "needrestart -r a"
+needrestart_restart_cmd: "needrestart -r l"
+needrestart_reboot_cmd: "needrestart -r l"
