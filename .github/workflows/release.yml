@@ -1,0 +1,12 @@
+---
+name: Release
+'on':
+  push:
+    tags:
+      - '*'
+
+jobs:
+  call-workflow-release:
+    uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_release.yml@main
+    secrets:
+      GALAXY_API_KEY: ${{ secrets.GALAXY_API_KEY }}
