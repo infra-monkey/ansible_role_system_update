@@ -1,0 +1,4 @@
+---
+dependency_list:
+  - "needrestart"
+needrestart_cmd: "needrestart -r a"

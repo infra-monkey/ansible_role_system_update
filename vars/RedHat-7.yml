@@ -1,0 +1,5 @@
+---
+dependency_list:
+  - "yum-utils"
+needrestart_restart_cmd: "dnf needs-restarting -s"
+needrestart_reboot_cmd: "dnf needs-restarting -r"
