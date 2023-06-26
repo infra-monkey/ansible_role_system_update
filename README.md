@@ -17,7 +17,6 @@ This role requires root permissions. It must be called as root. This needs to be
 | system_upgrade_reboot_timeout | integer | no | n.a. | How long in seconds to wait after rebooting the system before considering it failed if not responding |
 | system_upgrade_test_command | string | no | n.a. | Absolute path of a script validating the health of the system. Return 0 for healthy |
 
-
 # Automatique Testing
 
 This role is tested using Molecule against:
