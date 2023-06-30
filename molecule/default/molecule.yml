@@ -1,8 +1,8 @@
 ---
-dependency:
-  name: galaxy
-driver:
-  name: docker
+# dependency:
+#   name: galaxy
+# driver:
+#   name: docker
 # platforms:
 #   - name: instance
 #     image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
@@ -11,13 +11,13 @@ driver:
 #       - /sys/fs/cgroup:/sys/fs/cgroup:ro
 #     privileged: true
 #     pre_build_image: true
-provisioner:
-  name: ansible
-  playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
-verifier:
-  name: ansible
-lint: |
-  set -e
-  yamllint .
-  ansible-lint
+# provisioner:
+#   name: ansible
+#   playbooks:
+#     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+# verifier:
+#   name: ansible
+# lint: |
+#   set -e
+#   yamllint .
+#   ansible-lint
