@@ -7,7 +7,19 @@ on:
     branches: [main]
 
 jobs:
-  call-workflow-molecule:
-    uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@main
-    with:
-      role-name: 'system_update'
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: "${{ github.repository }}"
+      - name: Test with molecule
+        uses: robertdebock/molecule-action@5.0.3
+        with:
+          namespace: "robertdebock"
+          command: lint
+  # call-workflow-molecule:
+  #   uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@main
+  #   with:
+  #     role-name: 'system_update'
