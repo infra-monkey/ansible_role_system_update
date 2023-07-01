@@ -5,4 +5,4 @@
   gather_facts: yes
 
   roles:
-    - role: system_update
+    - role: ansible_role_system_update
