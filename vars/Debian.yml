@@ -1,5 +1,5 @@
 ---
 dependency_list:
   - "needrestart"
-needrestart_restart_cmd: "needrestart -q -l -r l"
-needrestart_reboot_cmd: "needrestart -q -k -r l"
+needrestart_restart_cmd: "needrestart -b -l | grep NEEDRESTART-SVC | awk '{ print $2 }'"
+needrestart_reboot_cmd: "needrestart -b -k | grep NEEDRESTART-KSTA | awk '{ print $2 }'"
