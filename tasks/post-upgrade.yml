@@ -24,10 +24,10 @@
   ansible.builtin.service:
     name: "{{ system_update_item }}"
     state: "restarted"
-  loop: "{{ service_restart.stdout | list }}"
+  loop: "{{ service_restart.stdout_lines }}"
   loop_control:
     loop_var: system_update_item
-  when: reboot_required.stdout | int < 2 and service_restart.stdout | length > 0
+  when: reboot_required.stdout | int < 2 and service_restart.stdout_lines | length > 0
 
 - name: "Reboot upgraded host"
   ansible.builtin.reboot:
