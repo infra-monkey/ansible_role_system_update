@@ -1,5 +1,5 @@
 ---
-name: Molecule Test
+name: Automatic Test
 on:
   push:
     branches: [main]
@@ -7,7 +7,15 @@ on:
     branches: [main]
 
 jobs:
-  call-workflow-molecule:
-    uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@main
+  call-workflow-lint:
+    uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_lint.yml@feat/molecule-distro
+  call-workflow-molecule-debian-bullseye:
+    uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@feat/molecule-distro
     with:
-      role-name: 'system_update'
+      image: 'debian'
+      tag: 'bullseye'
+  call-workflow-molecule-debian-bookworm:
+    uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@feat/molecule-distro
+    with:
+      image: 'debian'
+      tag: 'bookworm'
