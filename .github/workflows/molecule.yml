@@ -10,11 +10,13 @@ jobs:
   call-workflow-lint:
     uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_lint.yml@feat/molecule-distro
   call-workflow-molecule-debian-bullseye:
+    needs: call-workflow-lint
     uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@feat/molecule-distro
     with:
       image: 'debian'
       tag: 'bullseye'
   call-workflow-molecule-debian-bookworm:
+    needs: call-workflow-lint
     uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@feat/molecule-distro
     with:
       image: 'debian'
