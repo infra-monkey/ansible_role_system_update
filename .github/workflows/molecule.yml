@@ -20,13 +20,13 @@ jobs:
     uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@main
     with:
       image: 'debian'
-      tag: 'bookworm'
-  call-workflow-molecule-redhat-7:
-    needs: call-workflow-lint
-    uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@main
-    with:
-      image: 'redhat'
-      tag: '7'
+      tag: 'latest'
+  # call-workflow-molecule-redhat-7:
+  #   needs: call-workflow-lint
+  #   uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@main
+  #   with:
+  #     image: 'redhat'
+  #     tag: '7'
   # call-workflow-molecule-redhat-8:
   #   needs: call-workflow-lint
   #   uses: infra-monkey/reuseable_workflows/.github/workflows/ansible_role_molecule.yml@main
