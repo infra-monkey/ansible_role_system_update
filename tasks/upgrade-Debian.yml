@@ -28,6 +28,7 @@
 
 - name: "Check if service restart is required"
   ansible.builtin.command: "{{ needrestart_restart_cmd }}"
+  changed_when: false
   when: reboot_required.stdout | int < 2
 
 - name: "Reboot upgraded host"
